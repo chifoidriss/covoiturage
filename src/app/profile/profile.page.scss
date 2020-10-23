@@ -1,0 +1,95 @@
+.header  {
+    
+    height: 150px;
+    background: hsla(180, 100%, 1%, 0);
+    padding-top: 1px;
+    // background-image: url(C:\Users\kbc\Pictures\Capturexx.png);
+    
+}
+#profil
+{
+    background: rgba(85, 106, 154, 0.79);
+    height: 9.3em;
+}
+.header h2,h5
+{
+    color:white;
+
+}
+.conteneur
+{
+background: silver;
+}
+.header h2 
+{
+    color: teal;
+    text-align: center;
+    font-variant-caps: petite-caps;
+    font-family: auto;
+    font-weight: bold;
+    font-size: x-large;
+    color:white;
+}
+#con
+{
+    font-size: 3em;
+    margin-left: 42%;
+    margin-top: 3%;
+}
+
+
+
+ion-label,ion-item ion-label ,ion-label p{
+    font-family: auto;
+    color:#092452;
+    text-transform: capitalize;
+    margin-left: 2%;
+    font-size: 1.1em;
+    
+}
+#send
+{
+    margin-left: 5%;
+    
+}
+h6
+{
+        flex-flow: wrap-reverse;
+}
+ion-card-subtitle {
+
+    font-family: cursive;
+    font-weight: bold;
+    font-size: large;
+}
+
+ion-button{
+    font-family: auto;
+    text-transform: capitalize;
+  
+    
+}
+h6,#val_mon
+{
+    
+}
+.color_icon
+{
+  color: var(--ion-color-warning-shade);
+}
+p
+{
+    font-family: auto;
+    color: seagreen;
+    font-weight: bolder;
+    font: status-bar;
+    font-family: monospace;
+    font-size: 0.8em;
+}
+small{
+    font-family: auto;
+}
+#publie
+{
+    font-weight: bolder;
+}

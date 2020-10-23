@@ -1,0 +1,70 @@
+
+<ion-content mode="ios">
+  <div class="ion-padding">
+
+    <div class="logo">
+      <ion-icon color="light" name="ios-contact"></ion-icon>
+    </div>
+
+    <form [formGroup]="userReg" (ngSubmit)="signup()">
+	    <ion-item>
+	      <ion-label color="light" position="floating">Nom: </ion-label>
+	      <ion-input formControlName="nom" color="light" type="text" ></ion-input>
+	    </ion-item>
+
+	    <ion-item>
+	      <ion-label color="light" position="floating">Prenom: </ion-label>
+	      <ion-input formControlName="prenom" color="light" type="text"></ion-input>
+	    </ion-item>
+
+	    <ion-item>
+	      <ion-label color="light" position="floating">Adresse Email: </ion-label>
+	      <ion-input formControlName="email" color="light" type="mail"></ion-input>
+	    </ion-item>
+
+	    <ion-item>
+	      <ion-label color="light" position="floating">Numéro de téléphone: </ion-label>
+	      <ion-input formControlName="phone" color="light" type="number"></ion-input>
+	    </ion-item>
+
+	    <ion-item>
+	      <ion-label color="light" position="floating">Mot de passe: </ion-label>
+	      <ion-input formControlName="password" color="light" type="password"></ion-input>
+	    </ion-item>
+
+	    <ion-item>
+	      <ion-label color="light" position="floating">Confirmation: </ion-label>
+	      <ion-input formControlName="confirm" color="light" type="password"></ion-input>
+	    </ion-item>
+
+	    <ion-item lines="none">
+	      <ion-checkbox formControlName="accord" mode="ios"></ion-checkbox>
+	      <ion-label color="light">Je suis d'accord!</ion-label>
+	    </ion-item>
+
+	    <ion-item lines="none" *ngIf="errorMessage">
+	      	<ion-text color="danger">{{errorMessage}}</ion-text>
+	    </ion-item>
+
+	    <ion-button mode="ios" color="primary" expand="block" shape="round" type="submit" [disabled]="!userReg.valid">Inscription</ion-button>
+    </form>
+    <br>
+    <ion-button mode="ios" color="danger" expand="block" shape="round" routerLink="/login">Connexion</ion-button>
+
+    <ion-item lines="none">
+      <ion-label color="light" class="ion-text-center">Ou inscrivez-vous avec</ion-label>
+    </ion-item>
+
+    <div class="flex">
+      <ion-button mode="ios" color="facebook" shape="round">
+        <ion-icon slot="start" name="logo-facebook"></ion-icon>
+        Facebook
+      </ion-button>
+      <ion-button mode="ios" color="google" shape="round">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Google
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

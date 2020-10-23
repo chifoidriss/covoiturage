@@ -1,9 +1,52 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
+    <ion-title>Moteur de Recherche </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-item>
+      <ion-label position="floating">Ville de départ:</ion-label>
+      <ion-input type="text" [(ngModel)]="depart"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Ville d'arrivée:</ion-label>
+        <ion-input type="text" [(ngModel)]="arrivee"></ion-input>
+    </ion-item>
+    <ion-button (click)="search()" expand="block" fill="outline" shape="round">Rechercher</ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="finish">
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="finish && trajets.length == 0">
+        <ion-text color="danger">
+          Aucun trajet trouvé  pour <b>{{depart| titlecase}} -- {{arrivee| titlecase}}</b> !!!
+        </ion-text>
+      </ion-card-subtitle>
+      <ion-card-subtitle *ngIf="finish && trajets.length>0">
+        <ion-text color="success">
+          Resultats de recherche pour <b>{{depart| titlecase}} -- {{arrivee| titlecase}}</b> :
+        </ion-text>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-list>
+      <ion-item lines="none" *ngFor="let trajet of trajets" (click)="reserver(trajet)">
+        <ion-label>
+          <small>Le {{trajet.dateDepart | date:'dd/MM/y à HH:mm'}}</small>
+          <p>
+            <ion-button size="small" fill="clear">
+              <ion-icon name="ios-pin"></ion-icon>
+              {{trajet.depart| titlecase}}
+            </ion-button>
+            <br>
+            <ion-button size="small" fill="clear">
+              <ion-icon name="ios-pin"></ion-icon>
+              {{trajet.arrivee| titlecase}}
+            </ion-button>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

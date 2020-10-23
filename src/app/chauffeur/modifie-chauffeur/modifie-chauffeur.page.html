@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modifier un chauffeur</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" color="danger">
+        <ion-icon name="ios-close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-card mode="ios">
+		<ion-item>
+			<ion-label position="floating">Numéro CNI:</ion-label>
+			<ion-input type="number" [(ngModel)]="chauffeur.cni"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Numéro Permis:</ion-label>
+			<ion-input type="number" [(ngModel)]="chauffeur.permis"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Categorie du permis:</ion-label>
+			<ion-input type="text" [(ngModel)]="chauffeur.categorie"></ion-input>
+		</ion-item>
+		<ion-button expand="block" fill="outline" (click)="updateChauffeur()">
+			Enregistrer
+		</ion-button>
+	</ion-card>
+</ion-content>

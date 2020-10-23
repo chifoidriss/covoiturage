@@ -1,0 +1,48 @@
+
+<ion-content mode="ios">
+  <div class="ion-padding">
+
+    <div class="logo">
+      <ion-icon color="light" name="ios-contact"></ion-icon>
+    </div>
+
+    <form [formGroup]="userLog" (ngSubmit)="login()">
+      <ion-item>
+        <ion-label color="light" position="floating">Adresse Email: </ion-label><br>
+        <ion-input color="light" type="mail" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="light" position="floating">Mot de passe: </ion-label><br>
+        <ion-input color="light" type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="errorMessage">
+        <ion-text color="danger">{{errorMessage}}</ion-text>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-button mode="ios" color="light" slot="end" fill="clear">Mot de passe oublié ?</ion-button>
+      </ion-item>
+
+      <ion-button mode="ios" color="light" expand="block" shape="round" fill="outline" type="submit" [disabled]="userLog.invalid">Connexion</ion-button>
+    </form>
+    <br>
+    <ion-button mode="ios" color="danger" expand="block" shape="round" routerLink="/signup">Inscription</ion-button>
+
+    <ion-item lines="none">
+      <ion-label color="light" class="ion-text-center">Ou connectez-vous avec</ion-label>
+    </ion-item>
+
+    <div class="flex">
+      <ion-button mode="ios" color="facebook" shape="round">
+        <ion-icon slot="start" name="logo-facebook"></ion-icon>
+        Facebook
+      </ion-button>
+      <ion-button mode="ios" color="google" shape="round">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Google
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

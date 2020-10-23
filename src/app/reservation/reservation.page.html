@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="title" color="primary">Réservation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="close()">
+         <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-card>
+		<ion-item >
+			<ion-label>Lieu de départ:
+				<ion-label color="primary" >
+					<ion-icon name="ios-pin" class="color_icon"></ion-icon>
+					{{trajet.depart | titlecase}}
+				</ion-label>
+			</ion-label>
+		</ion-item>
+		<ion-item >
+			<ion-label>Lieu d'arrivée:
+				<ion-label color="secondary" fill="clear">
+					<ion-icon name="ios-pin" class="color_icon"></ion-icon>
+					{{trajet.arrivee | titlecase}}
+				</ion-label>
+			</ion-label>
+		</ion-item>
+		<ion-item >
+			<ion-label>Heure de départ:
+				<ion-label color="warning" fill="clear">
+					<ion-icon name="md-time" class="color_icon"></ion-icon>
+					{{trajet.dateDepart | date:'dd/MM/y à HH:mm'}}
+				</ion-label>
+			</ion-label>
+		</ion-item>
+		<ion-item >
+			<ion-label>Prix unitaire:
+				<ion-label color="danger" fill="clear">
+					<ion-icon name="ios-pricetag" class="color_icon"></ion-icon>
+					{{trajet.prix}} FCFA
+				</ion-label>
+			</ion-label>
+		</ion-item>
+		<ion-item >
+			<ion-label text-wrap>Nombre de places:
+				<ion-label color="primary" fill="clear" *ngIf="nbR < trajet.nbPlaces">
+					<ion-icon name="ios-contacts" class="color_icon"></ion-icon>
+					{{nbR}} / {{trajet.nbPlaces}} Places disponibles
+				</ion-label>
+				<ion-button color="danger" fill="clear" *ngIf="trajet.nbPlaces == nbR">
+					<ion-icon name="ios-contacts" class="color_icon"></ion-icon>
+					{{nbR}} / {{trajet.nbPlaces}} Places.
+				</ion-button>
+			</ion-label>
+		</ion-item>
+	</ion-card>
+
+	<ion-card>
+		<ion-item >
+			<ion-label>Immatriculation:
+				{{voiture(trajet.idUser)?.num | uppercase}}
+			</ion-label>
+        </ion-item>
+        <ion-item >
+			<ion-label>Marque:
+				{{voiture(trajet.idUser)?.marque | titlecase}}
+			</ion-label>
+        </ion-item>
+        <ion-item >
+			<ion-label>Modèle:
+				{{voiture(trajet.idUser)?.modele | uppercase}}
+			</ion-label>
+        </ion-item>
+        <ion-item >
+			<ion-label>Couleur:
+				{{voiture(trajet.idUser)?.couleur | titlecase}}
+			</ion-label>
+        </ion-item>
+    </ion-card>
+    <ion-card>
+	  	<ion-item lines="none">
+	      	<ion-avatar>
+	        	<img src="../../assets/user (1).png"/>
+	      	</ion-avatar>
+	      	<ion-label>
+	        	<h2>{{user(trajet.idUser)?.prenom | titlecase}} {{user(trajet.idUser)?.nom | uppercase}}</h2>
+	        	<p>Permi de catégorie <b>{{chauffeur(trajet.idUser)?.categorie | uppercase}}</b></p>
+	      	</ion-label>
+	    </ion-item>
+    </ion-card>
+
+    
+	<a href="mailto:{{user(trajet.idUser)?.email}} ?subject=Mr vous avez une nouvelle reservation">
+		<ion-button expand="block" (click)="reserver()" [disabled]="trajet.nbPlaces == nbR">
+	  		Réserver Maintenant
+	  	</ion-button>
+	</a>
+	 
+	    
+
+</ion-content>

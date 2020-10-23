@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Info Trajet</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" color="danger">
+        <ion-icon name="ios-close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-card>
+		<ion-item lines="none">
+			<ion-label>Lieu de départ:<br>
+				<ion-button color="primary" fill="clear">
+					<ion-icon name="ios-pin"></ion-icon>
+					{{trajet.depart}}
+				</ion-button>
+			</ion-label>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-label>Lieu d'arrivée:<br>
+				<ion-button color="secondary" fill="clear">
+					<ion-icon name="ios-pin"></ion-icon>
+					{{trajet.arrivee}}
+				</ion-button>
+			</ion-label>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-label>Heure de départ:<br>
+				<ion-button color="warning" fill="clear">
+					<ion-icon name="md-time"></ion-icon>
+					{{trajet.dateDepart | date:'dd/MM/y à HH:mm'}}
+				</ion-button>
+			</ion-label>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-label>Prix unitaire:<br>
+				<ion-button color="danger" fill="clear">
+					<ion-icon name="ios-pricetag"></ion-icon>
+					{{trajet.prix}} FCFA
+				</ion-button>
+			</ion-label>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-label>Nombre de places:<br>
+				<ion-button color="primary" fill="clear">
+					<ion-icon name="ios-contacts"></ion-icon>
+					{{nbR}} / {{trajet.nbPlaces}}
+				</ion-button>
+			</ion-label>
+		</ion-item>
+	</ion-card>
+
+  <ion-card mode="ios" *ngIf="reservations.length>0">
+    <ion-card-header>
+      <ion-card-subtitle>Mes Réservations</ion-card-subtitle>
+    </ion-card-header>
+    <ion-item lines="none" *ngFor="let reserve of reservations">
+      <ion-label>
+        <small>{{user(reserve.idUser).prenom }} {{user(reserve.idUser).nom }}</small>
+        <p>
+            Le {{reserve.date | date:'dd/MM/y à HH:mm'}}
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngIf="reservations.length < 1">
+      <ion-label color="danger">Aucne réservation pour ce trajet!!!</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

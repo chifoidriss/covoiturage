@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modifier un Trajet</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" color="danger">
+        <ion-icon name="ios-close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-item>
+      <ion-label position="floating">Lieu de départ:</ion-label>
+      <ion-input type="text" [(ngModel)]="trajet.depart"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Lieu d'arrivéé:</ion-label>
+      <ion-input type="text" [(ngModel)]="trajet.arrivee"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Date de départ:</ion-label>
+      <ion-datetime displayFormat="DD MM YY hh:mm" [(ngModel)]="trajet.dateDepart"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Prix:</ion-label>
+      <ion-input type="number" [(ngModel)]="trajet.prix"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre de places:</ion-label>
+      <ion-input type="text" [(ngModel)]="trajet.nbPlaces"></ion-input>
+    </ion-item>
+    
+    <ion-button expand="block" (click)="updateTrajet()" shape="round" color="danger">Continuer</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="title">Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="conteneur">
+	<ion-card class="welcome-card">
+		<img src="/assets/covoiture.PNG" alt="" />
+		<ion-card-header>
+	    	<ion-card-subtitle class="titre">Bien Commencer</ion-card-subtitle>
+			<ion-card-title class="titre">Bienvenue sur Comatowa</ion-card-title>
+		</ion-card-header>
+	 </ion-card>
+
+    <ion-card *ngFor="let trajet of listTrajets" class="card">
+		<ion-item lines="none">
+			<ion-buttons slot="start">
+				<ion-button slot="start" color="warning-shade" fill="clear"><h3>{{trajet.nbPlaces}} Places</h3></ion-button>
+			</ion-buttons>
+			<ion-buttons slot="end">
+				<ion-button slot="end" color="warning-shade" fill="clear"><h3>{{trajet.prix}} FCFA</h3></ion-button>
+			</ion-buttons>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-button size="small" color="primary" fill="clear"> {{trajet.depart | titlecase}}</ion-button>
+		</ion-item>
+		<ion-item lines="none">
+			<ion-button size="small" color="secondary" fill="clear"> {{trajet.arrivee | titlecase}}</ion-button>
+		</ion-item>
+	  	<ion-item lines="none">			  
+	      	<ion-avatar>
+	        	<img src="../../assets/contact.PNG"/>
+	      	</ion-avatar>
+	      	<ion-label>
+	        	<h2>{{user(trajet.idUser)?.prenom | titlecase}} {{user(trajet.idUser)?.nom | uppercase}}</h2>
+	        	<p>{{trajet.dateDepart | date:'dd/MM/y à HH:mm'}}</p>
+	      	</ion-label>
+	      	<ion-button shape="round" fill="outline" slot="end" (click)="reservation(trajet)">
+	      		Réserver
+	      	</ion-button>
+	    </ion-item>
+	</ion-card>
+</ion-content>

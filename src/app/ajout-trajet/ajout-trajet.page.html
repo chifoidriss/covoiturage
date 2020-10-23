@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Ajouter un Trajet</ion-title>
+    <ion-buttons slot="start" color="primary">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   
+  <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+    <ion-item>
+      <ion-label position="floating">Source</ion-label>
+      <ion-input formControlName="source"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Destination</ion-label>
+      <ion-input formControlName="destination"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="directionForm.invalid">Get Direction</ion-button>
+  </form>
+  
+  <div #mapElement class="map"></div>
+ 
+  <div>
+    <ion-item>
+      <ion-label position="floating">Lieu de départ:</ion-label>
+      <ion-input type="text" [(ngModel)]="trajet.depart"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Lieu d'arrivéé:</ion-label>
+      <ion-input type="text" [(ngModel)]="trajet.arrivee"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Date de départ:</ion-label>
+      <ion-datetime displayFormat="DD MM YY hh:mm" [(ngModel)]="trajet.dateDepart"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Prix:</ion-label>
+      <ion-input type="number" [(ngModel)]="trajet.prix"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre de places:</ion-label>
+      <ion-input type="text" [(ngModel)]="trajet.nbPlaces"></ion-input>
+    </ion-item>
+   
+    
+    <ion-button expand="block" (click)="ajoutTrajet()" color="primary">Continuer</ion-button>
+  </div>
+ 
+</ion-content>

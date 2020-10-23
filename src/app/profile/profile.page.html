@@ -1,0 +1,128 @@
+
+<ion-content mode="ios">
+
+  <div class="header">
+   <!-- <h2>{{user.prenom}} {{user.nom}}</h2>-->
+  <div id="profil">
+    <ion-icon color="light" name="md-contact" id="con"></ion-icon>
+    
+    <ion-label class="ion-text-center" >
+      <h2>{{user?.prenom | titlecase}} {{user?.nom | uppercase}}</h2>
+      <h5>{{user?.email | lowercase}}</h5>
+      <h5>{{user?.phone}}</h5>
+    </ion-label> 
+</div>
+    
+  </div>
+  <br>   
+  <!--  <ion-card-header>
+  <ion-card mode="ios">
+  
+      <ion-card-subtitle >Informations Personnelles</ion-card-subtitle>
+    </ion-card-header>
+    <ion-item lines="none">
+      <ion-icon slot="start" name="ios-person" color="danger"></ion-icon>
+      <ion-label>{{user.prenom}} {{user.nom}}</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon slot="start" name="ios-mail" color="danger"></ion-icon>
+      <ion-label>{{user.email}}</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon slot="start" name="ios-call" color="danger"></ion-icon>
+      <ion-label>{{user.phone}}</ion-label>
+    </ion-item>
+  </ion-card>-->
+   
+
+      <ion-button expand="block" shape="round" fill="outline" size="small" class="ion-margin" color="warning"  (click)="updateUser()">
+        <ion-icon slot="start" name="md-brush"></ion-icon>
+        <ion-label>Modifier mes informations</ion-label>
+      </ion-button>
+
+      <ion-button expand="block" shape="round" fill="outline" size="small" class="ion-margin" color="danger" (click)="logout()">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        <ion-label>Se déconnecter</ion-label>
+      </ion-button>
+
+  <ion-card>
+    <ion-button expand="block" shape="round" fill="outline" size="small" *ngIf="chauffeur == null" (click)="ajoutChauffeur()">
+      <ion-icon slot="start" name="md-person"></ion-icon>
+        Je suis un chauffeur
+    </ion-button>
+    <div *ngIf="chauffeur != null">
+      <ion-item lines="none">
+        <ion-icon slot="start" name="ios-done-all" class="color_icon"></ion-icon>
+        <ion-label>{{chauffeur.cni}}</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="ios-key"  class="color_icon"></ion-icon>
+        <ion-label>{{chauffeur.permis}}</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="ios-car"  class="color_icon"></ion-icon>
+        <ion-label>{{chauffeur.categorie | uppercase}}</ion-label>
+      </ion-item>
+      <ion-button expand="block" shape="round" fill="outline" size="small" color="warning" (click)="updateChauffeur()">
+        <ion-icon slot="start" name="brush" ></ion-icon>
+        <ion-label> 
+          Modifier mes informations chauffeur
+        </ion-label>
+      </ion-button>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="block" shape="round" fill="outline" size="small" *ngIf="voiture == null" (click)="ajoutVoiture()">
+      <ion-icon slot="start" name="md-bus"></ion-icon>
+      Ajouter ma Voiture
+    </ion-button>
+    <div *ngIf="voiture != null">
+      <ion-item lines="none">
+        <ion-icon slot="start" name="card" class="color_icon"></ion-icon>
+        <ion-label>Immatriculation: {{voiture.num | uppercase}}</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="albums" class="color_icon"></ion-icon>
+        Marque: {{voiture.marque | titlecase}}
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="logo-buffer" class="color_icon"></ion-icon>
+        Modèle: {{voiture.modele | uppercase}}
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon slot="start"  name="color-palette" class="color_icon"></ion-icon>
+        Couleur: {{voiture.couleur | titlecase}}
+      </ion-item>
+      <ion-button expand="block" shape="round" fill="outline" size="small" color="warning" (click)="updateVoiture()">
+        <ion-icon slot="start" name="brush"></ion-icon>
+        <ion-label>Modifier ma voiture</ion-label>
+      </ion-button>
+    </div>
+  </ion-card>
+  
+<br>
+  <ion-button expand="block" shape="round" fill="outline" id="send" [disabled]="chauffeur == null || voiture == null" routerLink="/ajout-trajet">
+    <ion-icon slot="start" name="md-git-pull-request"></ion-icon>Publier un trajet
+  </ion-button>
+    <ion-item *ngFor="let trajet of myTrajets">    
+       <ion-label  (click)="infoTrajet(trajet)">       
+          <ion-icon name="ios-pin"  class="color_icon"></ion-icon>
+            {{trajet.depart | titlecase}}
+          <ion-icon name="md-arrow-forward" class="color_icon"></ion-icon>          
+          <ion-icon name="ios-pin" class="color_icon"></ion-icon>
+          {{trajet.arrivee | titlecase}}
+           
+          {{trajet.dateDepart | date:'dd/MM/y à HH:mm'}}
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button size="small"  (click)="delTrajet(trajet)">
+          <ion-icon name="ios-trash" class="color_icon"></ion-icon>
+        </ion-button>
+        <ion-button size="small"  (click)="upTrajet(trajet)">
+          <ion-icon name="md-create" class="color_icon"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-item>
+  <br><br>
+</ion-content>

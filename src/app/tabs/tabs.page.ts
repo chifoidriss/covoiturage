@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+	email:string;
+
+	constructor(private fireAuth: AngularFireAuth) {
+		this.fireAuth.authState.subscribe(auth => {
+			if (auth) {
+				this.email = auth.email;
+			}
+		}); 
+	}
 
 }
